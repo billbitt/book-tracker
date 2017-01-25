@@ -1,4 +1,4 @@
-var express = require("expess");
+var express = require("express");
 var router = express.Router();
 
 // import the model
@@ -49,9 +49,9 @@ router.put("/api/update-status/:id", function(request, response){
 router.put("/api/update-details/:id", function(request, response){
     var id = request.params.id;
     var updates = {
-        id: request.params.id;
-        rating: request.body.bookRating;
-        notes: request.body.bookNotes;
+        id: request.params.id,
+        rating: request.body.Rating,
+        notes: request.body.Notes
     }
     // update the book's status 
     booksModel.updateBookDetails(id, updates, function(){
@@ -80,4 +80,4 @@ router.delete("/api/books/:id", function(request, response){
     });
 });
 
-
+module.exports = router;

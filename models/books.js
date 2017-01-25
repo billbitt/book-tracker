@@ -13,7 +13,7 @@ var booksModel = {
     },
     insertBook: function(bookName, callback){
         // set parameters
-        var values = {name: bookName};
+        var values = {title: bookTitle};
         //call function from ORM
         orm.insertRecord(tableName, values, function(response){
             callback(response);

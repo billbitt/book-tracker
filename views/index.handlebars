@@ -1,0 +1,28 @@
+<div class="row">
+    <h1>Book Tracker</h1>
+    <h3>Read books. Track your progress.  Have fun!</h3>
+    <img src="/assets/img/book.jpg" alt="book" class="main-image">
+    <h2>Add a new Book to your reading list!</h2>
+    <form action="/api" method="POST">
+        <input type="text" name="bookTitle" placeholder="Enter book title here">
+        <button class="button-add" type="submit">Submit</button>
+    </form>
+</div>
+<div class="row">
+    <div class="container-left">
+        <h2 class="container-heading">Reading List</h2>
+        {{#each books}} 
+            {{#unless this.done}}
+                {{> book}}
+            {{/unless}}
+        {{/each}}
+    </div>
+    <div class="container-right">
+        <h2 class="container-heading">Books I've Read</h2>
+        {{#each books}}
+            {{#if this.done}}
+                {{> book}}
+            {{/if}}
+        {{/each}}
+    </div>
+</div>

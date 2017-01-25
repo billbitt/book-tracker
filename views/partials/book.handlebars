@@ -1,0 +1,25 @@
+<div class="book">
+    {{!--button to delete from database--}}
+    <form class="#" action="/api/books/{{this.id}}?_method=DELETE" method="POST">
+        <button class="button-delete" type="submit">x</button>
+    </form>
+    {{!--book information--}}
+        <h3>{{this.title}}"</h3>
+        <p class="author">Author: {{this.author}}</p>
+        <p class="description">Description: {{this.description}}</p>
+        {{!--only display the below if this is an 'eaten' burger--}}
+    {{#if this.done}}
+        <form action="/api/update-details/{{this.id}}?_method=PUT" method="POST">
+            <label for="rating">Rating:</label>
+            <input name="rating" class="input-book" placeholder="?" value="{{this.rating}}">
+            <textarea name="notes" class="textarea-book" placeholder="Enter notes here">{{this.notes}}</textarea>
+            <button class="button-update" type="submit">Update</button>
+        </form>
+    {{/if}}
+    {{#unless this.done}}
+        {{!--button to move to the "done" list--}}
+        <form action="/api/update-status/{{this.id}}?_method=PUT" method="POST">
+            <button class="button-update" type="submit">I read this!</button>
+        </form>
+    {{/unless}}
+</div>
