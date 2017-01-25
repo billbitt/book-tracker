@@ -1,12 +1,14 @@
 <div class="row">
     <h1>Book Tracker</h1>
-    <h3>Read books. Track your progress.  Have fun!</h3>
+    <h3 class="subtitle">Read books. Track your progress.  Have fun!</h3>
     <img src="/assets/img/book.jpg" alt="book" class="main-image">
-    <h2>Add a new Book to your reading list!</h2>
-    <form action="/api" method="POST">
-        <input type="text" name="bookTitle" placeholder="Enter book title here">
-        <button class="button-add" type="submit">Submit</button>
+    <h2>Add a new Book to your reading list:</h2>
+    <form>
+        <input type="text" name="title" id="titleSearch" placeholder="Enter book title here">
+        <button id="button-add">Submit</button>
     </form>
+    <div id="divDescription">
+    </div>
 </div>
 <div class="row">
     <div class="container-left">

@@ -1,0 +1,122 @@
+h1, h2, h3, p, label, input, select, textarea {
+    font-family: sans-serif;
+}
+
+p, label, input, select, textarea {
+    font-size: small;
+}
+
+/*format for all rows*/
+.row {
+    text-align: center;
+}
+
+/*formating for main sub-title*/
+.subtitle {
+    font-style: italic;
+    line-height: 1;
+}
+
+/*format for main image*/
+.main-image {
+    height: 200px;
+}
+
+/*format for two columns*/
+.container-right, .container-left {
+    text-align: left;
+    width: 40%;
+}
+.container-left {
+    float: left;
+    margin-left: 5%;
+}
+
+.container-right {
+    float: right;
+    margin-right: 5%;
+}
+
+/*heading over each of the two columns*/
+.container-heading {
+    text-align: center;
+}
+
+/*formatting for each book*/
+.book {
+    margin: 10px 0px 10px 0px;
+    padding: 10px;
+    background-color: palegoldenrod;
+    color: saddlebrown;
+}
+
+.title-book {
+    margin-top: 0px;
+}
+
+.form-delete {
+    float: right
+}
+
+.details-heading, .details {
+    display: inline;
+    font-style: italic;
+}
+
+.details-heading {
+    font-weight: bold;
+}
+
+.details {
+    max-height: 50px;
+    text-overflow: ellipsis;
+}
+
+/*inputs for book details */
+.dropdown-rating, .textarea-book {
+    margin: 5px 0px 5px 0px;
+    background-color: palegoldenrod;
+    color: saddlebrown;
+    border: none;
+}
+
+/*description */
+.textarea-book {
+    width: 100%;
+}
+
+.dropdown-rating:focus, .textarea-book:focus {
+    background-color: lightgoldenrodyellow;
+    color: saddlebrown;
+    border: none;
+}
+
+/*book buttons*/
+#button-add, .button-update, .button-delete{
+    padding: 5px 15px 5px 15px;
+    border: none;
+}
+
+#button-add, .button-update {
+    background-color: gold;
+    color: darkgoldenrod;
+}
+
+#button-add:hover, .button-update:hover {
+    background-color: darkgoldenrod;
+    color: gold;
+}
+
+.button-update {
+    margin: 5px 0px 0px 0px
+}
+
+.button-delete {
+    background-color: indianred;
+    color: darkred;
+}
+
+.button-delete:hover {
+    background-color: darkred;
+    color: indianred;
+}

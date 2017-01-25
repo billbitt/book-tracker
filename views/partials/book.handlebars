@@ -1,23 +1,44 @@
 <div class="book">
-    {{!--button to delete from database--}}
-    <form class="#" action="/api/books/{{this.id}}?_method=DELETE" method="POST">
-        <button class="button-delete" type="submit">x</button>
-    </form>
     {{!--book information--}}
-        <h3>{{this.title}}"</h3>
-        <p class="author">Author: {{this.author}}</p>
-        <p class="description">Description: {{this.description}}</p>
-        {{!--only display the below if this is an 'eaten' burger--}}
+        <h3 class="title-book">
+            <form class="form-delete" action="/api/books/{{this.id}}?_method=DELETE" method="POST">
+                <button class="button-delete" type="submit">x</button>
+            </form>
+            {{this.title}}
+        </h3>
+        {{!--button to delete from database--}}
+        
+        <div>
+            <p class="details-heading">Author: </p>
+            <p class="details">{{this.author}}</p>
+        </div>
+        <div>
+            <p class="details-heading">Description: </p>
+            <p class="details">{{this.description}}</p>
+        </div>
+    {{!--only display the below if this book was already read--}}
     {{#if this.done}}
         <form action="/api/update-details/{{this.id}}?_method=PUT" method="POST">
-            <label for="rating">Rating:</label>
-            <input name="rating" class="input-book" placeholder="?" value="{{this.rating}}">
-            <textarea name="notes" class="textarea-book" placeholder="Enter notes here">{{this.notes}}</textarea>
+            <div>
+                <label class="details-heading" for="rating">My Rating:</label>
+                <select class="dropdown-rating" name="rating">
+                    <option hidden value="{{this.rating}}">{{this.rating}}</option>
+                    <option value="1">1 (terrible)</option>
+                    <option value="2">2 (so-so)</option>
+                    <option value="3">3 (good)</option>
+                    <option value="4">4 (great) </option>
+                    <option value="5">5 (perfection)</option>
+                </select>
+            </div>
+            <div>
+                <label class="details-heading" for="notes">My Notes:</label>
+                <textarea name="notes" class="textarea-book" placeholder="Enter notes here">{{this.notes}}</textarea>
+            </div>
             <button class="button-update" type="submit">Update</button>
         </form>
     {{/if}}
+    {{!--only display if the book is not yet read--}}
     {{#unless this.done}}
-        {{!--button to move to the "done" list--}}
         <form action="/api/update-status/{{this.id}}?_method=PUT" method="POST">
             <button class="button-update" type="submit">I read this!</button>
         </form>

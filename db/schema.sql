@@ -2,11 +2,14 @@ CREATE DATABASE books_db;
 
 USE books_db;
 
+DROP TABLE books;
+
 CREATE TABLE books (
     id INTEGER(10) AUTO_INCREMENT NOT NULL,
-    title VARCHAR(200) NOT NULL,
+    title VARCHAR(500) NOT NULL,
     author VARCHAR(200),
-    description VARCHAR(300),
+    description VARCHAR(2000),
+    isbn VARCHAR(100),
     rating VARCHAR(2),
     notes VARCHAR(250),
     done BOOLEAN DEFAULT FALSE NOT NULL,

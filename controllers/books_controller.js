@@ -2,12 +2,13 @@ var express = require("express");
 var router = express.Router();
 
 // import the model
-var booksModel = require("../models/books.js");
+var model = require("../models/books.js");
 
 // create routes 
 router.get("/", function(request, response){
-    booksModel.getBooks(function(result){
-        //store the book list as an object for handlebars 
+    model.getAllBooks(function(result){
+        //console.log("result", result);
+        //store the resulting book list as an object for handlebars to render 
         var handlebarsObject = {
             books: result
         };
@@ -17,51 +18,40 @@ router.get("/", function(request, response){
 });
 
 router.post("/api/books", function(request, response){
-    var name = request.body.bookName;
+    var newBook = {
+        title: request.body.title,
+        author: request.body.author,
+        description: request.body.description,
+        isbn: request.body.isbn
+    }
     // add the book 
-    booksModel.insertBook(name, function(){
+    model.insertBook(newBook, function(result){
+        //console.log("result", result);
         //re-render the book list 
-        booksModel.getBooks(function(result){
-            var handlebarsObject = {
-                books: result
-            };
-            response.render("index", handlebarsObject);
-        });
+        response.redirect("/");
     });
 });
 
 // route to update the book's "done" status to "true"
 router.put("/api/update-status/:id", function(request, response){
     var id = request.params.id;
+    var updates = [{done: true}]; //must be passed as an array of objects for orm to consume 
     // update the book's status 
-    booksModel.updateStatus(id, function(){
+    model.updateBook(id, updates, function(result){
+        //console.log("result", result);
         //re-render the book list 
-        booksModel.getBooks(function(result){
-            var handlebarsObject = {
-                books: result
-            };
-            response.render("index", handlebarsObject);
-        });
+        response.redirect("/");
     });
 });
 
 // route to update the book's details
 router.put("/api/update-details/:id", function(request, response){
     var id = request.params.id;
-    var updates = {
-        id: request.params.id,
-        rating: request.body.Rating,
-        notes: request.body.Notes
-    }
+    var updates = [{id: request.params.id}, {rating: request.body.rating}, {notes: request.body.notes}];
     // update the book's status 
-    booksModel.updateBookDetails(id, updates, function(){
+    model.updateBook(id, updates, function(result){
         //re-render the book list 
-        booksModel.getBooks(function(result){
-            var handlebarsObject = {
-                books: result
-            };
-            response.render("index", handlebarsObject);
-        });
+        response.redirect("/");
     });
 });
 
@@ -69,14 +59,9 @@ router.put("/api/update-details/:id", function(request, response){
 router.delete("/api/books/:id", function(request, response){
     var id = request.params.id;
     // update the book's status 
-    booksModel.deleteBook(id, function(){
-        //re-render the book list 
-        booksModel.getBooks(function(result){
-            var handlebarsObject = {
-                books: result
-            };
-            response.render("index", handlebarsObject);
-        });
+    model.deleteBook(id, function(result){
+        //console.log("result", result);
+        response.redirect("/");
     });
 });
 
