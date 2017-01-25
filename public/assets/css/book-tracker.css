@@ -25,21 +25,28 @@ p, label, input, select, textarea {
 /*format for two columns*/
 .container-right, .container-left {
     text-align: left;
-    width: 40%;
+    width: 38%;
 }
 .container-left {
     float: left;
-    margin-left: 5%;
+    margin-left: 10%;
 }
 
 .container-right {
     float: right;
-    margin-right: 5%;
+    margin-right: 10%;
 }
 
 /*heading over each of the two columns*/
 .container-heading {
     text-align: center;
+}
+
+/*formatting for search input*/
+#titleSearch {
+    padding: 5px;
+    width: 300px;
+    border: none;
 }
 
 /*formatting for each book*/
@@ -80,7 +87,6 @@ p, label, input, select, textarea {
     border: none;
 }
 
-/*description */
 .textarea-book {
     width: 100%;
 }
