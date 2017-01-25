@@ -19,14 +19,6 @@ var booksModel = {
             callback(response);
         })
     },
-    updateBookDetails: function(bookId, updates, callback){
-        // set parameters
-        var condition = {id: bookId};
-        // call function from ORM
-        orm.updateRecord(tableName, updates, condition, function(response){
-            callback(response);
-        })
-    },
     updateStatus: function(bookId, callback){
         // set parameters
         var condition = {id: bookId};
@@ -35,7 +27,24 @@ var booksModel = {
         orm.updateRecord(tableName, updates, condition, function(response){
             callback(response);
         })
+    },
+    updateBookDetails: function(bookId, updates, callback){
+        // set parameters
+        var condition = {id: bookId};
+        // call function from ORM
+        orm.updateRecord(tableName, updates, condition, function(response){
+            callback(response);
+        })
+    },
+    deleteBook: function(bookId, callback){
+        // set parameters
+        var condition = {id: bookId};
+        // call function from ORM
+        orm.deleteRecord(tableName, condition, function(response){
+            callback(response);
+        })
     }
+    
 };
 
 module.exports = booksModel;
