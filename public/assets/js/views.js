@@ -2,7 +2,7 @@
 $(document).ready(function () {  // only begin once page has loaded
 
     // add auto-fill functionality to the title search 
-    $("#titleSearch").autocomplete({ // attach auto-complete functionality to textbox
+    $("#bookSearch").autocomplete({ // attach auto-complete functionality to textbox
         // settings
         autoFocus: true,
 
@@ -19,16 +19,14 @@ $(document).ready(function () {  // only begin once page has loaded
                         {
                             return {
                                 // label value will be shown in the suggestions
-                                label: item.volumeInfo.title + ', ' + item.volumeInfo.authors[0] + ', ' + item.volumeInfo.publishedDate,
+                                label: item.volumeInfo.title + ", by: " + item.volumeInfo.authors[0],
                                 // value is what gets put in the textbox once an item selected
-                                value: item.volumeInfo.title,
+                                value: item.volumeInfo.title + ", by: " + item.volumeInfo.authors[0],
                                 // other individual values to use later
                                 title: item.volumeInfo.title,
                                 author: item.volumeInfo.authors[0],
                                 isbn: item.volumeInfo.industryIdentifiers,
-                                publishedDate: item.volumeInfo.publishedDate,
-                                image: (item.volumeInfo.imageLinks == null ? "" : item.volumeInfo.imageLinks.thumbnail),
-                                description: item.volumeInfo.description,
+                                description: item.volumeInfo.description
                             };
                         }
                     }));
@@ -51,23 +49,22 @@ $(document).ready(function () {  // only begin once page has loaded
     });
 
     $("#button-add").on("click", function(){
-        $.ajax({
-            url: "/api/books",
-            dataType: "json",
-            method: "POST",
-            data: {
-                "title": $(this).data("title"),
-                "author": $(this).data("author"),
-                "description": $(this).data("description"),
-                "isbn": $(this).data("isbn")
-            },
-            success: function(data) {
-                console.log("button ajax success data", data)
-            },
-            error: function(error){
-                console.log("button ajax failed", error);
-            }
-        });
+        if ($("#bookSearch").val().trim() != ""){  //make sure there is a value in the search 
+            $.ajax({
+                url: "/api/books",
+                dataType: "json",
+                method: "POST",
+                data: {
+                    "title": $(this).data("title"),
+                    "author": $(this).data("author"),
+                    "description": $(this).data("description"),
+                    "isbn": $(this).data("isbn")
+                },
+                success: function(data) {
+                    console.log("button ajax success data", data)
+                },
+            });
+        };
     });
 
 });

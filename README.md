@@ -18,3 +18,4 @@ An application to help me track the books I plan to read and those I have alread
 
 ### JS Libraries
 + jQuery (for.... ) and jQuery UI (for autocomplete functionality)
++ googleFonts 

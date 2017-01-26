@@ -1,4 +1,4 @@
-h1, h2, h3, p, label, input, select, textarea {
+h2, h3, p, label, input, select, textarea {
     font-family: sans-serif;
 }
 
@@ -6,47 +6,73 @@ p, label, input, select, textarea {
     font-size: small;
 }
 
-/*format for all rows*/
+/*format for rows*/
 .row {
-    text-align: center;
+    margin-bottom: 20px;
+    margin-left: 10%;
+    width: 80%;
 }
 
-/*formating for main sub-title*/
-.subtitle {
+.container-middle {
+    padding: 20px;
+}
+
+.billboard {
+    background-color: palegoldenrod;
+    color: darkred;
+}
+
+.search {
+    background-color: goldenrod;
+}
+
+h1 {
+      font-family: 'PT Mono', monospace;
+      margin-bottom: 5px;
+}
+
+.sub-header {
     font-style: italic;
-    line-height: 1;
-}
-
-/*format for main image*/
-.main-image {
-    height: 200px;
+    font-weight: normal;
+    color: saddlebrown;
+    margin-top: 5px;
 }
 
 /*format for two columns*/
 .container-right, .container-left {
     text-align: left;
-    width: 38%;
+    width: 45%;
 }
 .container-left {
     float: left;
-    margin-left: 10%;
 }
 
 .container-right {
     float: right;
-    margin-right: 10%;
 }
 
 /*heading over each of the two columns*/
-.container-heading {
+.column-heading {
     text-align: center;
+    color: saddlebrown
 }
 
 /*formatting for search input*/
-#titleSearch {
+
+#bookSearch, #button-add {
+    font-size: large;
+}
+
+#bookSearch {
     padding: 5px;
-    width: 300px;
+    width: 70%;
+    color: darkslategrey;
     border: none;
+}
+
+#button-add {
+    float: right;
+    width: 25%;
 }
 
 /*formatting for each book*/
@@ -82,6 +108,7 @@ p, label, input, select, textarea {
 /*inputs for book details */
 .dropdown-rating, .textarea-book {
     margin: 5px 0px 5px 0px;
+    width: 30px;
     background-color: palegoldenrod;
     color: saddlebrown;
     border: none;
@@ -89,6 +116,10 @@ p, label, input, select, textarea {
 
 .textarea-book {
     width: 100%;
+}
+
+.dropdown-rating:hover, .textarea-book:hover {
+    background-color: lightgoldenrodyellow;
 }
 
 .dropdown-rating:focus, .textarea-book:focus {
