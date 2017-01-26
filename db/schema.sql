@@ -18,4 +18,6 @@ CREATE TABLE books (
     PRIMARY KEY (id)
 );
 
+UPDATE books SET date_completed = CURRENT_TIMESTAMP WHERE id = 9;
+
 SELECT * FROM books;
