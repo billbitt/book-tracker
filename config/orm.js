@@ -34,9 +34,15 @@ function getProperties(object){
 //helper function to turn an object into SQL-ready string
 function objectToSql(object){
     var array = [];
+    var text = "";
     for (var key in object){
         if(object.hasOwnProperty(key)){
-            array.push(key + " = '" + object[key] + "'");
+            if (typeOf(object[key]) === "string"){
+                text = key + " = '" + object[key] + "'";
+            } else {
+                text = key + " = " + object[key];
+            }
+            array.push(text);
         };
     };
     return array.join(", ")
@@ -47,63 +53,74 @@ var orm = {
     returnAll: function(tableName, columnsArray, callback){
         var columnsString = columnsArray.join(", ");
         //build the query
-        var sqlQuery = "SELECT " + columnsString + " FROM " + tableName;
+        var sqlQuery = "SELECT " + columnsString + " FROM " + tableName;  //utilize the escapes 
+        console.log(sqlQuery);
         // make the query 
-        connection.query(sqlQuery, function(error, result){
+        connection.query(sqlQuery, function(error, data){
             if (error) {
                 console.log("Error occured with function orm.returnAll(). Error:");
                 console.log(error);
                 return;
             }
-            callback(result);
+            console.log("data", data);
+            callback(data);
         });
     },
     // method to add a new row to a tableName
     insertRecord: function(tableName, valuesObject, callback){
-        var columns = valuesObject.getKeys(); //returns an array
-        var values = valuesObject.getValues(); //returns an array 
+        var columns = getKeys(valuesObject).join(", "); //returns an array
+        var values = getProperties(valuesObject); //returns an array 
         // build the query
-        var sqlQuery = "INSERT INTO" + tableName + " (" + columns.join(", ") + ") ";
+        var sqlQuery = "INSERT INTO " + tableName + " (" + columns + ") ";
         sqlQuery += "VALUES (" + printQuestionMarks(values.length) + ")";
+        console.log(sqlQuery);
+        console.log(JSON.stringify(values));
         // make the query
-        conneciton.query(sqlQuery, values, function(error, result){
+        connection.query(sqlQuery, values, function(error, data){
             if (error) {
                 console.log("Error occured with function orm.insertRecord(). Error:");
                 console.log(error);
                 return;
             };
-            callback(result);
+            callback(data);
         });
     },
     // method to update a row
-    updateRecord: function(tableName, valuesObject, conditionObject, callback){
+    updateRecords: function(tableName, valuesArray, conditionObject, callback){
+        console.log(valuesArray);
         //build the query
-        var sqlQuery = "UPDATE " + tableName + " ";
-        sqlQuery += "SET " + objectToSql(valuesObject) + " ";
-        sqlQuery += "WHERE " + objectToSql(conditionObject);
+        var sqlQuery = "UPDATE " + tableName + " ";  //should include table name as an escaped value 
+        sqlQuery += "SET " + printQuestionMarks(valuesArray.length) + " ";
+        sqlQuery += "WHERE ?";
+        console.log(sqlQuery);
         // make the query
-        connection.query(sqlQuery, function(error, data) {
+        valuesArray.push(conditionObject);
+        console.log(valuesArray);
+        connection.query(sqlQuery, valuesArray, function(error, data) {
             if (error) {
-                console.log("Error occured with function orm.updateRecord(). Error:");
+                console.log("Error occured with function orm.updateRecords(). Error:");
                 console.log(error);
                 return;
             };
-            callback(result);
+            callback(data);
         });
     },
     // method to delete a row
-    deleteRecord: function(tableName, conditionObject, callback){
-        //build the query
+    deleteRecords: function(tableName, conditionObject, callback){
+        // build the query 
         var sqlQuery = "DELETE FROM " + tableName + " ";
-        sqlQuery += "WHERE " + cobjectToSQL(condition);
-        // make the query
-        connection.query(sqlQuery, function(error, data) {
+        sqlQuery += "WHERE ?";
+        // make the query 
+        console.log(sqlQuery);
+        connection.query(sqlQuery, conditionObject, function(error, data) {
             if (error) {
-                console.log("Error occured with function orm.deleteRecord(). Error:");
+                console.log("Error occured with function orm.deleteRecords(). Error:");
                 console.log(error);
                 return;
             };
-            callback(result);
+            callback(data);
         });
     }
 };
+
+module.exports = orm;

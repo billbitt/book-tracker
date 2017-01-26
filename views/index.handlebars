@@ -1,0 +1,32 @@
+<div class="row">
+    <div class="container-middle billboard">
+        <h1>bookTracker</h1>
+        <h3 class="sub-header">Read books. Track your progress.  Have fun!</h3>
+    </div>
+</div>
+<div class="row">
+    <div class="container-middle search">
+        <form>
+            <input type="text" name="bookSearch" id="bookSearch" placeholder="Search by Title or Author">
+            <button id="button-add">Add to Reading List</button>
+        </form>
+    </div>
+</div>
+<div class="row">
+    <div class="container-left">
+        <h2 class="column-heading">Reading List</h2>
+        {{#each books}} 
+            {{#unless this.done}}
+                {{> book}}
+            {{/unless}}
+        {{/each}}
+    </div>
+    <div class="container-right">
+        <h2 class="column-heading">Books I've Read</h2>
+        {{#each books}}
+            {{#if this.done}}
+                {{> book}}
+            {{/if}}
+        {{/each}}
+    </div>
+</div>

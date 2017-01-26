@@ -1,0 +1,159 @@
+h2, h3, p, label, input, select, textarea {
+    font-family: sans-serif;
+}
+
+p, label, input, select, textarea {
+    font-size: small;
+}
+
+/*format for rows*/
+.row {
+    margin-bottom: 20px;
+    margin-left: 10%;
+    width: 80%;
+}
+
+.container-middle {
+    padding: 20px;
+}
+
+.billboard {
+    background-color: palegoldenrod;
+    color: darkred;
+}
+
+.search {
+    background-color: goldenrod;
+}
+
+h1 {
+      font-family: 'PT Mono', monospace;
+      margin-bottom: 5px;
+}
+
+.sub-header {
+    font-style: italic;
+    font-weight: normal;
+    color: saddlebrown;
+    margin-top: 5px;
+}
+
+/*format for two columns*/
+.container-right, .container-left {
+    text-align: left;
+    width: 45%;
+}
+.container-left {
+    float: left;
+}
+
+.container-right {
+    float: right;
+}
+
+/*heading over each of the two columns*/
+.column-heading {
+    text-align: center;
+    color: saddlebrown
+}
+
+/*formatting for search input*/
+
+#bookSearch, #button-add {
+    font-size: large;
+}
+
+#bookSearch {
+    padding: 5px;
+    width: 70%;
+    color: darkslategrey;
+    border: none;
+}
+
+#button-add {
+    float: right;
+    width: 25%;
+}
+
+/*formatting for each book*/
+.book {
+    margin: 10px 0px 10px 0px;
+    padding: 10px;
+    background-color: palegoldenrod;
+    color: saddlebrown;
+}
+
+.title-book {
+    margin-top: 0px;
+}
+
+.form-delete {
+    float: right
+}
+
+.details-heading, .details {
+    display: inline;
+    font-style: italic;
+}
+
+.details-heading {
+    font-weight: bold;
+}
+
+.details {
+    max-height: 50px;
+    text-overflow: ellipsis;
+}
+
+/*inputs for book details */
+.dropdown-rating, .textarea-book {
+    margin: 5px 0px 5px 0px;
+    width: 30px;
+    background-color: palegoldenrod;
+    color: saddlebrown;
+    border: none;
+}
+
+.textarea-book {
+    width: 100%;
+}
+
+.dropdown-rating:hover, .textarea-book:hover {
+    background-color: lightgoldenrodyellow;
+}
+
+.dropdown-rating:focus, .textarea-book:focus {
+    background-color: lightgoldenrodyellow;
+    color: saddlebrown;
+    border: none;
+}
+
+/*book buttons*/
+#button-add, .button-update, .button-delete{
+    padding: 5px 15px 5px 15px;
+    border: none;
+}
+
+#button-add, .button-update {
+    background-color: gold;
+    color: darkgoldenrod;
+}
+
+#button-add:hover, .button-update:hover {
+    background-color: darkgoldenrod;
+    color: gold;
+}
+
+.button-update {
+    margin: 5px 0px 0px 0px
+}
+
+.button-delete {
+    background-color: indianred;
+    color: darkred;
+}
+
+.button-delete:hover {
+    background-color: darkred;
+    color: indianred;
+}
