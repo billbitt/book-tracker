@@ -38,4 +38,4 @@ An application to help me track the books I want to read and those I have alread
 + Google Fonts 
 
 ### Screenshot
-![book tracker](http://book-tracker/public/assets/img/bookTracker.png)
+![book tracker](http://i.imgur.com/iYqNRuN.png)
