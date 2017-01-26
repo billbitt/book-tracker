@@ -2,8 +2,6 @@ CREATE DATABASE books_db;
 
 USE books_db;
 
-DROP TABLE books;
-
 CREATE TABLE books (
     id INTEGER(10) AUTO_INCREMENT NOT NULL,
     title VARCHAR(500) NOT NULL,
@@ -18,6 +16,6 @@ CREATE TABLE books (
     PRIMARY KEY (id)
 );
 
+-- test --
 UPDATE books SET date_completed = CURRENT_TIMESTAMP WHERE id = 9;
 
-SELECT * FROM books;

@@ -1,9 +1,6 @@
 INSERT INTO books (title, author)
-VALUES ("Lewis and Clark", "Lewis");
-
-INSERT INTO books (title, author)
-VALUES ("Some Kewl Book", "some d00d");
+VALUES ("Some Kewl Book", "Some Dude");
 
 INSERT INTO books (title, author, done)
-VALUES ("The Bible", "gawd", false);
+VALUES ("The Bible", "Mr. G", false);
 
