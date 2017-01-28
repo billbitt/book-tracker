@@ -1,4 +1,5 @@
 var connection = require("./connection.js");
+var request = require("request");
 
 // helper function to print question marks
 function printQuestionMarks(number){
@@ -120,6 +121,25 @@ var orm = {
             };
             callback(data);
         });
+    },
+    // method to search google books
+    googleBooksSearch: function(searchTerm, callback){
+        // url link to google books, including text entered by user (searchTerm)
+        var booksUrl = "https://www.googleapis.com/books/v1/volumes?printType=books&q=" + searchTerm;
+
+        request({method: "GET", dataType: "jsonp", url: booksUrl}, function (error, response, body) {
+            if (!error && response.statusCode == 200) {        
+                //console.log(body) // Show the HTML for the Google homepage. 
+                callback(body);
+            };
+        });
+        // $.ajax({
+        //     url: booksUrl,
+        //     dataType: "jsonp",
+        //     success: function(data) {
+        //         callback(data);
+        //     }
+        // });
     }
 };
 

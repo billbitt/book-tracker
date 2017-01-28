@@ -5,18 +5,20 @@ $(document).ready(function () {  // only begin once page has loaded
     $("#bookSearch").autocomplete({ // attach auto-complete functionality to textbox
         // settings
         autoFocus: true,
-
-        // define source of the data
-        source: function (request, response) {
-            // url link to google books, including text entered by user (request.term)
-            var booksUrl = "https://www.googleapis.com/books/v1/volumes?printType=books&q=" + encodeURIComponent(request.term);
+        minLength: 2, // set minimum length of text the user must enter
+        // use the back end to provide a source for the autocomplete via googleBooks api
+        source: function (request, response) {  // auto complete will pass the search term as the sole property of the request, and wants a string or array passed back to it.
             $.ajax({
-                url: booksUrl,
-                dataType: "jsonp",
+                method: "GET",
+                url: "/api/search/googleBooks",
+                dataType: "json",
+                data: {searchTerm: encodeURIComponent(request.term)},
                 success: function(data) {
-                    response($.map(data.items, function (item) {
-                        if (item.volumeInfo.authors && item.volumeInfo.title && item.volumeInfo.industryIdentifiers && item.volumeInfo.publishedDate)
-                        {
+                    //console.log(data);
+                    var sourceList = JSON.parse(data)
+                    console.log(sourceList);
+                    response($.map(sourceList.items, function (item) {  //map the received data and send back through the callback 
+                        if (item.volumeInfo.authors && item.volumeInfo.title && item.volumeInfo.industryIdentifiers) {
                             return {
                                 // label value will be shown in the suggestions
                                 label: item.volumeInfo.title + ", by: " + item.volumeInfo.authors[0],
@@ -28,7 +30,7 @@ $(document).ready(function () {  // only begin once page has loaded
                                 isbn: item.volumeInfo.industryIdentifiers,
                                 description: item.volumeInfo.description
                             };
-                        }
+                        };
                     }));
                 }
             });
@@ -44,8 +46,7 @@ $(document).ready(function () {  // only begin once page has loaded
             }
             $("#button-add").attr("data-description", description);
             $("#button-add").attr("data-isbn", ui.item.isbn[0].identifier);
-        },
-        minLength: 2 // set minimum length of text the user must enter
+        }
     });
 
     $("#button-add").on("click", function(){
@@ -61,7 +62,7 @@ $(document).ready(function () {  // only begin once page has loaded
                     "isbn": $(this).data("isbn")
                 },
                 success: function(data) {
-                    console.log("button ajax success data", data)
+                    console.log("book submitted successfully")
                 },
             });
         };
