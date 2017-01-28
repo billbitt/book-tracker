@@ -65,4 +65,14 @@ router.delete("/api/books/:id", function(request, response){
     });
 });
 
+// route for the auto completion of the search bar
+router.get("/api/search/googleBooks/", function(request, response){
+    var term = request.body.searchTerm;
+    // update the book's status 
+    model.googleBooksSearch(term, function(result){
+        //console.log("result", result);
+        response.json(result);
+    });
+});
+
 module.exports = router;
