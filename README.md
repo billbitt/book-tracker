@@ -40,6 +40,7 @@ An application to help me track the books I want to read and those I have alread
 
 ### Future Development
 + add media queries to handle different size Screenshot
++ incorporate time stamps for when a book is completed 
 + add authorization so the app can be used by multiple users
 + use TDD to test current build and drive future development
 
