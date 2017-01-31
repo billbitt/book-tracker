@@ -31,11 +31,17 @@ An application to help me track the books I want to read and those I have alread
 + Method-override (to enable PUT and DELETE requests directly from forms in the HTML)
 + Express-handlebars (to quickly deliver and render HTML using data from MySQL)
 + MySQL (for storing and retrieving data)
++ Request (to make API calls from my back end to other APIs like Google Books)
 
 ### Libraries
 + jQuery
 + jQuery UI
 + Google Fonts 
+
+### Future Development
++ add media queries to handle different size Screenshot
++ add authorization so the app can be used by multiple users
++ use TDD to test current build and drive future development
 
 ### Screenshot
 ![book tracker](http://i.imgur.com/iYqNRuN.png)

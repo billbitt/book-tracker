@@ -1,6 +1,8 @@
 var mysql = require("mysql");
 var connection;
 
+var credentials = require("./credentials");
+
 //set connection to jawsDB.  default to local host for testing.
 if (process.env.JAWSDB_URL){
     connection = mysql.createConnection(process.env.JAWSDB_URL);
@@ -8,8 +10,8 @@ if (process.env.JAWSDB_URL){
     connection = mysql.createConnection({
         host: "localhost",
         port: 3306,
-        user: "root",
-        password: "JW55cw04",
+        user: credentials.user,
+        password: credentials.password,
         database: "books_db"
     })
 };
