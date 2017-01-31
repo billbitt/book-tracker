@@ -133,13 +133,6 @@ var orm = {
                 callback(body);
             };
         });
-        // $.ajax({
-        //     url: booksUrl,
-        //     dataType: "jsonp",
-        //     success: function(data) {
-        //         callback(data);
-        //     }
-        // });
     }
 };
 
