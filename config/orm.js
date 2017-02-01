@@ -63,14 +63,14 @@ var orm = {
                 console.log(error);
                 return;
             }
-            console.log("data", data);
+            //console.log("data", data);
             callback(data);
         });
     },
     // method to add a new row to a tableName
     insertRecord: function(tableName, valuesObject, callback){
         var columns = getKeys(valuesObject).join(", "); //returns an array
-        var values = getProperties(valuesObject); //returns an array 
+        var values = getProperties(valuesObject); // returns an array 
         // build the query
         var sqlQuery = "INSERT INTO " + tableName + " (" + columns + ") ";
         sqlQuery += "VALUES (" + printQuestionMarks(values.length) + ")";
@@ -129,7 +129,7 @@ var orm = {
 
         request({method: "GET", dataType: "jsonp", url: booksUrl}, function (error, response, body) {
             if (!error && response.statusCode == 200) {        
-                //console.log(body) // Show the HTML for the Google homepage. 
+                //console.log("orm>request>body", body)
                 callback(body);
             };
         });

@@ -7,7 +7,6 @@ var model = require("../models/books.js");
 // create routes 
 router.get("/", function(request, response){
     model.getAllBooks(function(result){
-        //console.log("result", result);
         //store the resulting book list as an object for handlebars to render 
         var handlebarsObject = {
             books: result
@@ -26,7 +25,6 @@ router.post("/api/books", function(request, response){
     }
     // add the book 
     model.insertBook(newBook, function(result){
-        //console.log("result", result);
         //re-render the book list 
         response.redirect("/");
     });
@@ -38,7 +36,6 @@ router.put("/api/update-status/:id", function(request, response){
     var updates = [{done: true}]; //must be passed as an array of objects for orm to consume 
     // update the book's status 
     model.updateBook(id, updates, function(result){
-        //console.log("result", result);
         //re-render the book list 
         response.redirect("/");
     });
@@ -60,17 +57,15 @@ router.delete("/api/books/:id", function(request, response){
     var id = request.params.id;
     // update the book's status 
     model.deleteBook(id, function(result){
-        //console.log("result", result);
         response.redirect("/");
     });
 });
 
 // route for the auto completion of the search bar
-router.get("/api/search/googleBooks/", function(request, response){
+router.post("/api/search/googleBooks/", function(request, response){
     var term = request.body.searchTerm;
     // update the book's status 
     model.googleBooksSearch(term, function(result){
-        //console.log("result", result);
         response.json(result);
     });
 });

@@ -6,18 +6,19 @@ $(document).ready(function () {  // only begin once page has loaded
         // settings
         autoFocus: true,
         minLength: 2, // set minimum length of text the user must enter
+
         // use the back end to provide a source for the autocomplete via googleBooks api
-        source: function (request, response) {  // auto complete will pass the search term as the sole property of the request, and wants a string or array passed back to it.
+        source: function (request, response) {  // autocomplete will pass the search term, and wants a string or array of results back.
             $.ajax({
-                method: "GET",
+                method: "POST",
                 url: "/api/search/googleBooks",
                 dataType: "json",
-                data: {searchTerm: encodeURIComponent(request.term)},
+                data: {searchTerm: encodeURIComponent(request.term)}, 
                 success: function(data) {
                     //console.log(data);
                     var sourceList = JSON.parse(data)
                     console.log(sourceList);
-                    response($.map(sourceList.items, function (item) {  //map the received data and send back through the callback 
+                    response($.map(sourceList.items, function (item) {  // map each item in the source list and send back through the callback 
                         if (item.volumeInfo.authors && item.volumeInfo.title && item.volumeInfo.industryIdentifiers) {
                             return {
                                 // label value will be shown in the suggestions

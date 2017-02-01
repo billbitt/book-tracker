@@ -36,7 +36,7 @@ var model = {
     googleBooksSearch: function(searchTerm, callback){
         // call function from the ORM
         orm.googleBooksSearch(searchTerm, function(response){
-            callback(response); //note: this is where the mapping should take place?
+            callback(response); 
         })
     }
     
