@@ -1,4 +1,5 @@
- 
+var frontEndFunctions = require("./frontEndFunctions");
+
 $(document).ready(function () {  // only begin once page has loaded
 
     // add auto-fill functionality to the title search 
@@ -8,34 +9,7 @@ $(document).ready(function () {  // only begin once page has loaded
         minLength: 2, // set minimum length of text the user must enter
 
         // use the back end to provide a source for the autocomplete via googleBooks api
-        source: function (request, response) {  // autocomplete will pass the search term, and wants a string or array of results back.
-            $.ajax({
-                method: "POST",
-                url: "/api/search/googleBooks",
-                dataType: "json",
-                data: {searchTerm: encodeURIComponent(request.term)}, 
-                success: function(data) {
-                    //console.log(data);
-                    var sourceList = JSON.parse(data)
-                    console.log(sourceList);
-                    response($.map(sourceList.items, function (item) {  // map each item in the source list and send back through the callback 
-                        if (item.volumeInfo.authors && item.volumeInfo.title && item.volumeInfo.industryIdentifiers) {
-                            return {
-                                // label value will be shown in the suggestions
-                                label: item.volumeInfo.title + ", by: " + item.volumeInfo.authors[0],
-                                // value is what gets put in the textbox once an item selected
-                                value: item.volumeInfo.title + ", by: " + item.volumeInfo.authors[0],
-                                // other individual values to use later
-                                title: item.volumeInfo.title,
-                                author: item.volumeInfo.authors[0],
-                                isbn: item.volumeInfo.industryIdentifiers,
-                                description: item.volumeInfo.description
-                            };
-                        };
-                    }));
-                }
-            });
-        },
+        source: frontEndFunctions.getSources(request, response),  // autocomplete will pass (1) a request with the search term and (2) response 
         // when a title is selected, store that data in the submit button
         select: function (event, ui) {
             $("#button-add").attr("data-title", ui.item.title);

@@ -4,7 +4,7 @@
   "description": "An application to help me track the books I have read",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "./node_modules/.bin/mocha --reporter spec",
     "start": "node server.js"
   },
   "repository": {
@@ -16,7 +16,7 @@
     "tracking",
     "reading"
   ],
-  "author": "Bill Bittner",
+  "author": "Bill Bittner @billbitt",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/billbitt/book-tracker/issues"
@@ -24,9 +24,11 @@
   "homepage": "https://github.com/billbitt/book-tracker#readme",
   "dependencies": {
     "body-parser": "^1.16.0",
+    "chai": "^3.5.0",
     "express": "^4.14.0",
     "express-handlebars": "^3.0.0",
     "method-override": "^2.3.7",
+    "mocha": "^3.2.0",
     "mysql": "^2.13.0",
     "request": "^2.79.0"
   }

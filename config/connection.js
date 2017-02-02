@@ -6,7 +6,6 @@ if (process.env.JAWSDB_URL){
     connection = mysql.createConnection(process.env.JAWSDB_URL);
 } else {
     var credentials = require("./credentials");
-    
     connection = mysql.createConnection({
         host: "localhost",
         port: 3306,
@@ -23,6 +22,8 @@ connection.connect(function(error){
         return;
     }
     console.log("Connected to MySql as connection:", connection.threadId);
+    //console.log(connection);
+    //console.log("host", connection.config.host)
 });
 
 //export the connection 
