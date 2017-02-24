@@ -5,7 +5,7 @@ An application to help me track the books I want to read and those I have alread
 + Wrote entire backend of the application 
  * Used Express.js for the server and MySQL for the database
  * Utilized MVC structure
-+ Wrote my own ORM to communicated between my model and database
++ Wrote my own ORM to communicate between my model and database
 + Wrote front end using HTML, Handlebars.js, CSS, and JavaScript
 
 ### Application flow
